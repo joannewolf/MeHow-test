@@ -12,10 +12,11 @@
 
 <body>
 	<div class="container">
-		<div>
+<!-- 		<div>
 			<video id="video" width="640" height="480" autoplay="true"></video>
-		</div>
-		<script>
+		</div> -->
+		<input type="file" accept="image/*;capture=camera">
+		<!-- <script>
 		var video = document.getElementById('video');
 
 		// Get access to the camera!
@@ -26,7 +27,7 @@
 		        video.play();
 		    });
 		}
-		</script>
+		</script> -->
 		<h1>My HCI Friends</h1>
 		{{#each friends}}
 			<div class="friend" id={{id}}>
