@@ -188,3 +188,7 @@ img {
 	border: none;
 	color: #000000;
 }
+
+#emoji-table td{
+	text-align: center;
+}
