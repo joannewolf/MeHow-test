@@ -1,4 +1,2 @@
-Lab 5
-====
-
-Lab 5: Putting it together
+# MeHow
+CSE 170 Diary app

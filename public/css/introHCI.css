@@ -1,0 +1,190 @@
+/* global css setting */
+body {
+
+}
+
+header {
+	background-color: #b3d9ff;
+}
+
+/* for home page */
+.icon {
+	width: 64px;
+	padding: 10px;
+}
+
+#calendar-button {
+	float: right;
+}
+
+div.ui-datepicker {
+	width: 100%; /*what ever width you want*/
+}
+
+div.ui-datepicker td {
+	text-align: center;
+}
+
+.container {
+	/*width: 400px;*/
+	width: 90%;
+	/*margin:5 auto;*/
+	margin: 5%;
+	text-align: center;
+}
+
+.time-bar {
+	font-size: 30px;
+	margin-top: 5px;
+	display: inline-block;
+}
+
+.entry {
+	border-radius: 25px;
+    border: 2px solid #b3d9ff;
+    padding: 20px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.emoji-block {
+	width: 25%;
+	float: left;
+}
+
+.emoji {
+	width: 48px;
+}
+
+.time {
+	font-size: 12px;
+	width: 53px;
+}
+
+.img {
+	width: 75%;
+	float: right;
+}
+
+.text-entry {
+	float: left;
+	margin-top: 5px;
+}
+
+.text-entry-short p {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+}
+
+.add-button {
+	position: fixed;
+    bottom: 5px;
+    right: 5px;
+	float: right;
+}
+
+.add-button:active {
+  transform: translateY(3px);
+}
+
+.big-icon {
+	width: 84px;
+	padding: 5px;
+}
+
+.clearfix {
+	clear: both;
+}
+
+/* for entry page */
+#edit-button {
+	width: 72px;
+	float: right;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;	
+}
+
+.modal {
+  	text-align: center;
+  	padding: 0!important;
+}
+
+.modal:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.modal-header {
+	border-bottom: none;
+}
+
+.button-row {
+	margin-top: 10px;
+	display: inline-block;
+}
+
+#save-button {
+	position: fixed;
+    bottom: 0px;
+    right: 0px;
+	/*float: right;*/
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 50%;
+    cursor: pointer;
+}
+
+#cancel-button {
+	position: fixed;
+    bottom: 0px;
+    left: 0px;
+	/*float: left;*/
+	background-color: #DE6461;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 50%;
+    cursor: pointer;
+}
+
+.edit-text-entry {
+	width: 100%;
+	height: auto;
+	/*height: 120px;*/
+	/*resize: vertical;*/
+	resize: none;
+	margin-top: 5px;
+    overflow: show;
+	padding: 5px;
+	/*border: none;*/
+}
+
+.edit-text-entry[disabled] {
+	background-color: #FFFFFF;
+	border: none;
+	color: #000000;
+}
