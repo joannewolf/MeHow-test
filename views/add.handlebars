@@ -1,44 +1,133 @@
 <!doctype html>
 <html>
+
+
 <head>
 	<title>Entry</title>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="/css/introHCI.css" rel="stylesheet">
-	<!-- this is a comment in HTML -->
-
+	<link href="/css/global.css" rel="stylesheet">
+	<link href="/css/addPage.css" rel="stylesheet">
+	
+	<!-- Audio Zone -->
+	<link href="audio/styles/app.css" rel="stylesheet" type="text/css">
+    <link href="audio/styles/install-button.css" rel="stylesheet" type="text/css">
+    <!-- End Of Audio Zone -->
+    <!-- this is a comment in HTML -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->        
+    <![endif]-->
+
 </head>
 
 <body>
 	<header id="main-nav-bar">
-		<a href="/" id="back-button">
-			<img src="images/back-icon-128.png" class="icon">
+		<a href="/index" id="back-button">
+			<img src="/images/back-icon-128.png" class="icon">
 		</a>
 	</header>
 	<div class="container">
-		
 		<div class="time-bar">
-			<p>Sat. Feb 10, 2017</p>
+			<input id="datetime24" data-format="HH:mm MM-DD-YYYY" data-template="HH : mm MM / DD / YYYY" name="datetime" value="{{time.hour}}:{{time.minute}} {{date.month}}-{{date.day}}-{{date.year}}" type="text">
+			<!-- <p id="entry-time" data-month="{{date.month}}">{{time.hour}}:{{time.minute}} {{date.weekday}} {{date.monthText}} {{date.day}}, {{date.year}}</p> -->
 		</div>
 		<!-- divs are invisible structuring elements that stack vertically by default. Use them to organize your code -->
 		<!-- img tags are images. Lorem Pixel will deliver random images; handy! -->
 		<!-- a are anchors, also known as hyperlinks. Use the href attribute to tell the browser where to go when the user clicks -->
-		<div class="clearfix">
-			<h2> How are you doing right now? </h2>
-		</div>
 		
+		<div class="clearfix">
+			<h3> How are you doing right now? </h3>
+		</div>
+
+		<div id="emojiTableAtAdd">
+			<table style="width:100%">
+				<script>
+					document.writeln("<tr>");
+					var cnt=0;	
+
+					{{#each emojis.emojis}}
+						document.writeln('<div><td><img src={{imageURL}} id={{id}} class="emoji_ADDPAGE"></td></div>');	
+						cnt++;
+						if(cnt%6==0){
+							document.writeln("</tr><tr>");
+						}
+					{{/each}}
+					document.writeln("</tr>");
+				</script>
+			</table>
+		</div>
+
+
+
+		<div style="margin: 10px;">
+			<table style="width:100%">
+				<td><img src="/images/memo_button.png" class="buttons" id="memoButton" width=60px height = 60px></td>
+				<td><img src="/images/camera_button.png" class="buttons" id="cameraButton" width=60px height = 60px data-toggle="modal" data-target="#camera-modal"></td>
+				<td><img src="/images/recorder_button.png" class="buttons" id="recorderButton" width=60px height = 60px></td>
+			</table>
+		</div>
+
+		<div class="form-group clearfix">
+	      	<textarea class="form-control" id="textareaAtAdd" rows="3" style="margin-bottom: 50px"></textarea>
+	    </div>
+
+		<div classs="clearfix" id="audioAreaAtAdd">
+			<section class="main-controls" >
+	        	<canvas class="visualizer"></canvas>
+
+	        	<div id="audioButtons">
+	          		<button class="btn btn-info btn-block" id="recordButton">Record</button>
+	        	</div>
+      		</section>
+      		<section class="sound-clips" id="sound-section" style="margin-bottom: 60px"></section>
+      	</div> 
+      	<!-- <div class="clearfix"> -->
+      	<div id="cameraAreaAtAdd">
+			<canvas id="camera-canvas"></canvas>
+      	</div>
+
+      	<div class="modal fade" id="camera-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+              </div>
+              <div class="modal-body">
+      			<video id="video" width="100%" height="auto" autoplay></video>
+      			<div class="button-row">
+	      			<img id="snap" src="/images/camera_button.png" class="icon">
+					<img id="gallery" src="/images/gallery_button.png" class="icon">
+      			</div>
+			    <input id="file-input" type="file" accept="image/*" />
+				
+              </div>
+            </div>
+          </div>
+        </div>
+
+		<div class="button-row">
+			<a href="/index" id="cancel-button">Cancel</a>
+			<!-- <a href="/index" id="save-button">Save</a> -->
+			<button id="save-button">Save</button>
+		</div>
 	</div>
 
-
 	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/addPage.js"></script>
+	<script src="/js/moment.js"></script>
+	<script src="/js/combodate.js"></script>
+		<!-- Audio Zone -->
+    <script src="/audio/scripts/install.js"></script>  
+    <!-- Below is your custom application script -->
+    <!-- <script src="/audio/scripts/app.js"></script> -->
+    <!-- End of Audio Zone -->
 </body>
 </html>

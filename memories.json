@@ -1,0 +1,68 @@
+{
+	"memories": [
+		{
+			"id": "1",
+			"time": {
+					"hour": 22,
+					"minute": 30
+				},
+			"date": {
+					"day": 8,
+					"month": 2,
+					"year": 2017
+				},
+			"emoji": "emoji_1",
+			"imageURL": "/data/2017-02-08-22-30.jpg",
+			"memo": "I believe that everything happens for a reason. People change so that you can learn to let go, things go wrong so that you appreciate them when they're right, you believe lies so you eventually learn to trust no one but yourself, and sometimes good things fall apart so better things can fall together.",
+			"audioURL": "/data/2017-02-08-22-30.mp3"
+		},
+		{
+			"id": "2",
+			"time": {
+					"hour": 10,
+					"minute": 2
+				},
+			"date": {
+					"day": 8,
+					"month": 2,
+					"year": 2017
+				},
+			"emoji": "emoji_5",
+			"imageURL": "/data/2017-02-08-10-02.jpg",
+			"memo": "Love is friendship that has caught fire. It is quiet understanding, mutual confidence, sharing and forgiving. It is loyalty through good and bad times. It settles for less than perfection and makes allowances for human weaknesses.",
+			"audioURL" : ""		
+		},
+		{
+			"id": "3",
+			"time": {
+					"hour": 1,
+					"minute": 0
+				},
+			"date": {
+					"day": 1,
+					"month": 1,
+					"year": 2017
+				},
+			"emoji": "emoji_10",
+			"imageURL": "/data/2017-01-01-01-00.jpg",
+			"memo": "Some days are just bad days, that's all. You have to experience sadness to know happiness, and I remind myself that not every day is going to be a good day, that's just the way it is!",
+			"audioURL": "/data/2017-01-01-01-00.mp3"
+		},
+		{
+			"id": "4",
+			"time": {
+					"hour": 23,
+					"minute": 59
+				},
+			"date": {
+					"day": 31,
+					"month": 12,
+					"year": 2016
+				},
+			"emoji": "emoji_18",
+			"imageURL": "",
+			"memo": "",
+			"audioURL": ""		
+		}
+	]
+}

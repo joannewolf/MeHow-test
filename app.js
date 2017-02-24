@@ -6,7 +6,12 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var handlebars = require('express3-handlebars')
+var handlebars = require('express3-handlebars');
+var moment = require('moment');
+var fs = require('fs');
+var sqlite3 = require('sqlite3');
+
+var login = require('./routes/login');
 
 var index = require('./routes/index');
 
@@ -15,6 +20,9 @@ var entry = require('./routes/entry');
 var add = require('./routes/add');
 
 var setting = require('./routes/setting');
+
+var database = require('./routes/database');
+
 // Example route
 // var user = require('./routes/user');
 
@@ -41,13 +49,28 @@ if ('development' == app.get('env')) {
 }
 
 // Add routes here
-app.get('/', index.view);
+app.get('/', login.viewLogin);
 
-app.get('/entry', entry.viewEntry);
+app.get('/index', index.view);
+
+app.get('/entry/:id', entry.viewEntry);
 
 app.get('/add', add.viewAdd);
 
 app.get('/setting', setting.viewSetting);
+
+app.post('/insertMemory', database.insertMemory);
+app.post('/deleteMemory', database.deleteMemory);
+app.post('/updateMemory', database.updateMemory);
+
+app.post("/test", function(req,res){
+
+  var data = String(req.body.data.toString().match(/,(.*)$/)[1]);
+  var decodeData = new Buffer(data.toString(), 'base64');
+  fs.writeFile('./test.webm', decodeData, function (err){
+      if (err) return console.log(err);
+   });
+});
 
 // Example route
 // app.get('/users', user.list);
