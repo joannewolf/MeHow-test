@@ -49,14 +49,13 @@ function initializePage() {
     $('.rm-element-button').hide();
     $('.edit-audio-control').hide();
     $('#playButton').click(audioToggle);
-    $('#stopButton').click(resetMusic);    
     $('#askForRecordButton').click(overwrite_warning);
     $('#audio-ok-button').hide();
 
     $(".rm-element-button").click(removeElement);
     var player = document.getElementById('player');
     player.onended = function(){
-        console.log("Music ended");
+        // console.log("Music ended");
         $('#playButton').removeClass("on");
         $('#playButton').attr("src", "../images/play.png");
     }
@@ -85,13 +84,6 @@ function initializePage() {
     if(!current_data.audioURL){
         $(".audioButton").hide()
     }
-}
-
-function resetMusic(e){
-    document.getElementById('player').pause();
-    document.getElementById('player').currentTime = 0;
-    $('#playButton').removeClass("on");
-    $('#playButton').attr("src", "../images/play.png");
 }
 
 function audioToggle(e){
@@ -123,6 +115,7 @@ function edit(e) {
     $("#delete-button").show();
     $("#cancel-button").show();
     $("#save-button").show();
+    $("#back-button").hide();
 
     $('#datetime24').show();
     $('#datetime24').combodate();
@@ -141,7 +134,12 @@ function edit(e) {
         $("#audio-rm-button").show();
         $("#audio-record-icon").show();
     }
-    audioRecord = $('#player').attr("src");
+
+    if(current_data.imageURL == noImageURL){
+        $("#img-rm-button").hide();
+        // $('#entry-image').attr('src','/images/add-image.jpg');
+    }else{
+    }
 
     previewCamera();
 }
@@ -177,6 +175,7 @@ function close_edit(e) {
     $("#delete-button").hide();
     $("#cancel-button").hide();
     $("#save-button").hide();
+    $("#back-button").show();
 
     $('#datetime24').combodate('destroy');
     $('#datetime24').hide();
@@ -225,8 +224,11 @@ function save(e) {
     else
         data.imageData = $("#entry-image").attr("src");
 
+    if ($('#player').attr("src") == current_data.audioURL)
+        data.audioData = current_data.audioURL;
+    else
+        data.audioData = audioRecord;
     current_data.audioURL = $('#player').attr("src");
-    data.audioData = audioRecord;
 
     console.log(current_data.memo);
     console.log(current_data.time);
@@ -281,6 +283,7 @@ function snapImage() {
     context.scale(-1, 1);
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     $("#entry-image").attr("src", canvas.toDataURL(""));
+    $("#img-rm-button").show();
 }
 
 function readImageFile() {
@@ -292,6 +295,7 @@ function readImageFile() {
     x.onchange = function() {
         readImage(this);
     };
+    $("#img-rm-button").show();
 }
 
 function readImage(input) {
@@ -377,7 +381,8 @@ function removeElement(e){
     }else if(e.target.id == "img-rm-button"){
         console.log("remove image");        
         var img = document.getElementById('entry-image');
-        img.src = '/images/no-image.jpg';
+        $('#img-rm-button').hide();
+        img.src = noImageURL;
         //TO-DO: Change the imgURL of the entry to "";
 
     }else if(e.target.id == "text-rm-button"){
@@ -390,7 +395,7 @@ function removeElement(e){
 
 
 function overwrite_warning(e){
-    if(!audioRecord){
+    if(!audioRecord && !$('#player').attr('src')){
         $('#audio-ok-button').hide();
         recordAudio(e);    
     }else{
@@ -481,11 +486,7 @@ function recordAudio(e){
             
             //Save to global var.
             // audioRecord = blob;
-            var reader = new window.FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = function() {
-                audioRecord = reader.result;         
-            };
+            
 
             modelExit.onclick = function(e){
                 deleteButton.click();
@@ -503,7 +504,11 @@ function recordAudio(e){
                 deleteButton.click();
                 var player= document.getElementById('player');
                 player.src = audioURL;
-                audioRecord = blob;
+                var reader = new window.FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = function() {
+                    audioRecord = reader.result;         
+                };
                 $('#audio-rm-button').show();
                 $('#audio-record-icon').show();
                 $("#recorder-modal").modal("toggle");

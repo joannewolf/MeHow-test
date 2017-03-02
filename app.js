@@ -10,6 +10,7 @@ var handlebars = require('express3-handlebars');
 var moment = require('moment');
 var fs = require('fs');
 var sqlite3 = require('sqlite3');
+var randomstring = require('randomstring');
 
 var login = require('./routes/login');
 
@@ -43,6 +44,7 @@ app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -52,12 +54,15 @@ if ('development' == app.get('env')) {
 app.get('/', login.viewLogin);
 
 app.get('/index', index.view);
+app.get('/indexB', index.viewPlayButton);
 
 app.get('/entry/:id', entry.viewEntry);
 
 app.get('/add', add.viewAdd);
 
 app.get('/setting', setting.viewSetting);
+
+app.post('/login', login.saveLoginName);
 
 app.post('/insertMemory', database.insertMemory);
 app.post('/deleteMemory', database.deleteMemory);
