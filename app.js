@@ -12,6 +12,7 @@ var fs = require('fs');
 var sqlite3 = require('sqlite3');
 var randomstring = require('randomstring');
 
+
 var login = require('./routes/login');
 
 var index = require('./routes/index');
@@ -54,11 +55,12 @@ if ('development' == app.get('env')) {
 app.get('/', login.viewLogin);
 
 app.get('/index', index.view);
-app.get('/indexB', index.viewPlayButton);
 
 app.get('/entry/:id', entry.viewEntry);
 
 app.get('/add', add.viewAdd);
+
+app.get('/addB', add.viewAddB);
 
 app.get('/setting', setting.viewSetting);
 
